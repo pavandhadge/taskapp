@@ -7,11 +7,13 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/cors"
+	"github.com/pavandhadge/taskapp/internal/repository"
 )
 
 type application struct {
 	config dbconfig
 	addr   string
+	store  repository.TaskRepo
 }
 
 type dbconfig struct {

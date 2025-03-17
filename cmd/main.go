@@ -7,6 +7,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/pavandhadge/taskapp/internal/db"
+	"github.com/pavandhadge/taskapp/internal/repository"
 )
 
 func main() {
@@ -29,6 +30,7 @@ func main() {
 	app := &application{
 		config: dbConfig,
 		addr:   os.Getenv("PORT"),
+		store:  repository.NewStorage(db),
 	}
 	mux := app.mount()
 	if err := app.run(mux); err != nil {
