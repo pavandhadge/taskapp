@@ -17,7 +17,7 @@ func NewTaskStore(t *sql.DB) *TaskStore {
 }
 
 func (t *TaskStore) CreateTask(task *model.Task) error {
-	query := `INSERT INTO task_list (title,completed) VALUES (?,?);`
+	query := `INSERT INTO task_lists (title,completed) VALUES (?,?);`
 	stmt, err := t.db.Prepare(query)
 	if err != nil {
 		fmt.Print("error while making new task ")
@@ -40,6 +40,7 @@ func (t *TaskStore) GetAllTasks() ([]model.Task, error) {
 	rows, err := t.db.Query(query)
 
 	if err != nil {
+		fmt.Errorf("error while getting all taska", err)
 		return nil, err
 	}
 
